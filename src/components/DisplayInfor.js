@@ -3,8 +3,27 @@ import "./DisplayInfor.scss";
 import logo from "./../logo.svg";
 
 class DisplayInfor extends React.Component {
-  state = {
-    isShowListUser: true,
+  constructor(props) {
+    super(props);
+    this.state = {
+      isShowListUser: true,
+    };
+  }
+
+  componentDidMount = () => {
+    setTimeout(() => {
+      // hàm thay tên title
+      document.title = "minhDM";
+    }, 3000);
+  };
+
+  componentDidUpdate = (prevProps, prevState, Snapshot) => {
+    console.log("call me component", this.props, prevProps);
+    if (this.props.listUsers !== prevProps.listUsers) {
+      if (this.props.listUsers.length === 5) {
+        alert("me");
+      }
+    }
   };
 
   handleHideShow = () => {
@@ -21,6 +40,7 @@ class DisplayInfor extends React.Component {
         {/* <img src={logo} /> */}
         <div>
           <span onClick={() => this.handleHideShow()}>
+            {/* điều kiện để showhide */}
             {this.state.isShowListUser === true
               ? "hide list users"
               : "show list users"}
