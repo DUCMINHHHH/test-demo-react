@@ -9,28 +9,92 @@ body {
 }
 
 .app-container {
+  .main-content {
+    height: 100vh;
+    .app-content {
+      margin: 0 266px;
+      max-width: 1370px;
+      padding: 0 80px;
+      .homepage-container {
+        // padding: 100px 0;
+        display: flex;
+        align-items: center;
+
+        .homepage-video video {
+          width: 700px;
+          height: 700px;
+          margin-left: 0;
+        }
+      }
+
+      .homepage-content {
+        height: 470px;
+
+        .homepage-title {
+          font-size: 80px;
+          line-height: 100%;
+          width: 369px;
+        }
+
+        .homepage-desc {
+          font-size: 24px;
+          line-height: 133%;
+          letter-spacing: normal;
+          margin-top: 30px;
+          width: 554px;
+        }
+
+        .btn-homepage {
+          margin-top: 30px;
+          height: 50px;
+          border-radius: 10px;
+          padding: 0 14px;
+          margin-right: 15px;
+          border: 1px solid #686c66;
+          background-color: #000;
+          color: #fff;
+
+          &:hover {
+            opacity: 0.7;
+          }
+        }
+      }
+    }
+  }
   .header-container {
-    .navbar-nav {
-      position: sticky;
+    .navbar {
       z-index: 10;
       background-color: rgba(0, 0, 0, 0) !important;
+      padding-top: 20px;
+
+      .btn-signin {
+        height: 40px;
+        border-radius: 7px;
+        padding: 0 14px;
+        margin-right: 15px;
+        border: 1px solid #686c66;
+        background-color: #fff;
+      }
+
+      .btn-signup {
+        height: 40px;
+        border-radius: 7px;
+        padding: 0 14px;
+        margin-right: 15px;
+        border: 1px solid #686c66;
+        background-color: #000;
+        color: #fff;
+
+        &:hover {
+          opacity: 0.7;
+        }
+      }
 
       .nav-link {
         &.active {
           color: goldenrod;
         }
       }
-    }
-  }
-}
-
-.app-container {
-  .main-content {
-    .app-content {
-      margin: 0 266px;
-      max-width: 1370px;
-      height: 530px;
-      padding: 0 80px;
     }
   }
 }

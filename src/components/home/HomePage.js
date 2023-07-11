@@ -6,8 +6,7 @@ const HomePage = (props) => {
       <div className="homepage-video">
         <video
           poster="/static/homepage/hero/hero-poster.webp"
-          width="750"
-          height="500"
+          // width="900"
           muted
           loop
           autoplay="autoplay"
@@ -24,7 +23,16 @@ const HomePage = (props) => {
           />
         </video>
       </div>
-      <div className="homepage-content"></div>
+      <div className="homepage-content">
+        <div className="homepage-title">Forms that break the norm</div>
+        <div className="homepage-desc">
+          Get more data—like signups, feedback, and anything else—with forms
+          designed to be refreshingly different.
+        </div>
+        <div>
+          <button className="btn-homepage">Get started—it's free</button>
+        </div>
+      </div>
     </div>
   );
 };
