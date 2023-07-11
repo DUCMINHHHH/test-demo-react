@@ -11,11 +11,26 @@ body {
 .app-container {
   .header-container {
     .navbar-nav {
+      position: sticky;
+      z-index: 10;
+      background-color: rgba(0, 0, 0, 0) !important;
+
       .nav-link {
         &.active {
           color: goldenrod;
         }
       }
+    }
+  }
+}
+
+.app-container {
+  .main-content {
+    .app-content {
+      margin: 0 266px;
+      max-width: 1370px;
+      height: 530px;
+      padding: 0 80px;
     }
   }
 }
