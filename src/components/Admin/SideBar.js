@@ -17,6 +17,9 @@ import {
   FaHeart,
 } from "react-icons/fa";
 import sidebarBg from "../../assets/bg2.jpg";
+import { SiAidungeon } from "react-icons/si";
+import { MdDashboard } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const SideBar = ({ image, collapsed, toggled, handleToggleSidebar }) => {
   return (
@@ -42,28 +45,33 @@ const SideBar = ({ image, collapsed, toggled, handleToggleSidebar }) => {
               whiteSpace: "nowrap",
             }}
           >
-            MARCO MINH
+            <SiAidungeon size={"3em"} color={"goldenrod"} />{" "}
+            <span>MARCO MINH</span>
           </div>
         </SidebarHeader>
 
         <SidebarContent>
           <Menu iconShape="circle">
             <MenuItem
-              icon={<FaTachometerAlt />}
+              icon={<MdDashboard />}
               suffix={<span className="badge red">New</span>}
             >
-              dashboard
+              Dashboard
+              <Link to="/admin" />
             </MenuItem>
-            <MenuItem icon={<FaGem />}> components</MenuItem>
           </Menu>
           <Menu iconShape="circle">
             <SubMenu
-              suffix={<span className="badge yellow">3</span>}
-              icon={<FaRegLaughWink />}
+              icon={<FaGem />}
+              title="Features"
+              suffix={<span className="badge red">3</span>}
             >
-              <MenuItem> 1</MenuItem>
-              <MenuItem> 2</MenuItem>
-              <MenuItem> 3</MenuItem>
+              <MenuItem>
+                Quản lí Users
+                <Link to="/admin/mange-users" />
+              </MenuItem>
+              <MenuItem> Quản lí Bài Quiz</MenuItem>
+              <MenuItem>Quản lí Câu Hỏi</MenuItem>
             </SubMenu>
           </Menu>
         </SidebarContent>
@@ -89,7 +97,7 @@ const SideBar = ({ image, collapsed, toggled, handleToggleSidebar }) => {
                   overflow: "hidden",
                 }}
               >
-                viewSource
+                MARCO MINH
               </span>
             </a>
           </div>
