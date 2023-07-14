@@ -4,9 +4,12 @@ import { FaPlus } from "react-icons/fa";
 import TableUser from "./tableUser";
 import { useEffect, useState } from "react";
 import { getAllUsers } from "../../../services/apiServices";
+import ModalUpdateUser from "./ModalUpdateUser";
 
 const ManageUser = (props) => {
   const [showModalCreateUser, setshowModalCreateUser] = useState(false);
+  const [showModalUpdateUser, setshowModalUpdateUser] = useState(false);
+  const [dataUpdate, setdataUpdate] = useState({});
 
   const [listUser, setListUser] = useState([]);
   // component didmount
@@ -22,6 +25,11 @@ const ManageUser = (props) => {
     }
   };
 
+  const handleClickBtnUpdate = (user) => {
+    setshowModalUpdateUser(true);
+    setdataUpdate(user);
+  };
+
   return (
     <div className="manage-user-container">
       <div className="title">MANAGE USER</div>
@@ -35,12 +43,21 @@ const ManageUser = (props) => {
           </button>
         </div>
         <div className="table-users-container">
-          <TableUser listUser={listUser} />
+          <TableUser
+            listUser={listUser}
+            handleClickBtnUpdate={handleClickBtnUpdate}
+          />
         </div>
         <ModalCreateUser
           show={showModalCreateUser}
           setShow={setshowModalCreateUser}
           fetchListUser={fetchListUser}
+        />
+
+        <ModalUpdateUser
+          show={showModalUpdateUser}
+          setShow={setshowModalUpdateUser}
+          dataUpdate={dataUpdate}
         />
       </div>
     </div>

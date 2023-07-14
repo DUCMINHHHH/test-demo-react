@@ -1,19 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { FaPlus } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { postCreateNewUser } from "../../../services/apiServices";
+import finalPropsSelectorFactory from "react-redux/es/connect/selectorFactory";
+import _ from "lodash";
 
-const ModalCreateUser = (props) => {
+const ModalUpdateUser = (props) => {
   // const [show, setShow] = useState(false)
-  const { show, setShow } = props;
+  const { show, setShow, dataUpdate } = props;
   const handleClose = () => {
     setShow(false);
     setEmail("");
+    setPassword("");
     setUsername("");
     setRole("USER");
     setImage("");
+    setPreviewImage("");
   };
   const handleShow = () => setShow(true);
 
@@ -23,6 +27,20 @@ const ModalCreateUser = (props) => {
   const [Role, setRole] = useState("USER");
   const [image, setImage] = useState("");
   const [previewImage, setPreviewImage] = useState("");
+
+  useEffect(() => {
+    console.log(dataUpdate.role);
+    if (!_.isEmpty(dataUpdate)) {
+      // updateState
+      setEmail(dataUpdate.email);
+      setUsername(dataUpdate.username);
+      setRole(dataUpdate.role);
+      setImage("");
+      if (dataUpdate.image) {
+        setPreviewImage(`data:image/jpeg;base64,${dataUpdate.image}`);
+      }
+    }
+  }, [props.dataUpdate]);
 
   const handleUploadImage = (event) => {
     if (event.target && event.target.files && event.target.files[0]) {
@@ -54,7 +72,7 @@ const ModalCreateUser = (props) => {
       return;
     }
 
-    // submit datasad
+    // submit data
 
     let data = await postCreateNewUser(Email, Password, Username, Role, image);
     if (data && data.EC === 0) {
@@ -83,7 +101,7 @@ const ModalCreateUser = (props) => {
         className="modal-add-user"
       >
         <Modal.Header closeButton>
-          <Modal.Title>Add New User</Modal.Title>
+          <Modal.Title>Update New User</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {/* COPY TỪ FORM LAYOUT/BOOTSTRAP5 */}
@@ -94,6 +112,7 @@ const ModalCreateUser = (props) => {
                 type="email"
                 className="form-control"
                 value={Email}
+                disabled={true}
                 onChange={(event) => setEmail(event.target.value)}
               />
             </div>
@@ -103,6 +122,7 @@ const ModalCreateUser = (props) => {
                 type="password"
                 className="form-control"
                 value={Password}
+                disabled={true}
                 onChange={(event) => setPassword(event.target.value)}
               />
             </div>
@@ -159,4 +179,4 @@ const ModalCreateUser = (props) => {
   );
 };
 
-export default ModalCreateUser;
+export default ModalUpdateUser;
