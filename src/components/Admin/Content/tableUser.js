@@ -36,7 +36,12 @@ const TableUser = (props) => {
                     >
                       Update
                     </button>
-                    <button className="btn btn-danger">Detlete</button>
+                    <button
+                      onClick={() => props.handleClickBtnDelete(item)}
+                      className="btn btn-danger"
+                    >
+                      Detlete
+                    </button>
                   </td>
                 </tr>
               );
