@@ -3,13 +3,13 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { FaPlus } from "react-icons/fa";
 import { toast } from "react-toastify";
-import { postCreateNewUser } from "../../../services/apiServices";
+import { putUpdateUser } from "../../../services/apiServices";
 import finalPropsSelectorFactory from "react-redux/es/connect/selectorFactory";
 import _ from "lodash";
 
 const ModalUpdateUser = (props) => {
   // const [show, setShow] = useState(false)
-  const { show, setShow, dataUpdate } = props;
+  const { show, setShow, dataUpdate, reSetDataUpdate } = props;
   const handleClose = () => {
     setShow(false);
     setEmail("");
@@ -18,6 +18,7 @@ const ModalUpdateUser = (props) => {
     setRole("USER");
     setImage("");
     setPreviewImage("");
+    reSetDataUpdate();
   };
   const handleShow = () => setShow(true);
 
@@ -67,14 +68,8 @@ const ModalUpdateUser = (props) => {
       return;
     }
 
-    if (!Password) {
-      toast.error("invalid password");
-      return;
-    }
-
     // submit data
-
-    let data = await postCreateNewUser(Email, Password, Username, Role, image);
+    let data = await putUpdateUser(dataUpdate.id, Username, Role, image);
     if (data && data.EC === 0) {
       toast.success(data.EM);
       handleClose();
