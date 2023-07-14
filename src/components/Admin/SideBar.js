@@ -19,7 +19,10 @@ import {
 import sidebarBg from "../../assets/bg2.jpg";
 import { SiAidungeon } from "react-icons/si";
 import { MdDashboard } from "react-icons/md";
+<<<<<<< HEAD
 import { Link } from "react-router-dom";
+=======
+>>>>>>> 8ff02ef037b6a8d5f3bf270ba4e5ac5d17689ca0
 
 const SideBar = ({ image, collapsed, toggled, handleToggleSidebar }) => {
   return (
@@ -57,7 +60,10 @@ const SideBar = ({ image, collapsed, toggled, handleToggleSidebar }) => {
               suffix={<span className="badge red">New</span>}
             >
               Dashboard
+<<<<<<< HEAD
               <Link to="/admin" />
+=======
+>>>>>>> 8ff02ef037b6a8d5f3bf270ba4e5ac5d17689ca0
             </MenuItem>
           </Menu>
           <Menu iconShape="circle">
@@ -66,10 +72,14 @@ const SideBar = ({ image, collapsed, toggled, handleToggleSidebar }) => {
               title="Features"
               suffix={<span className="badge red">3</span>}
             >
+<<<<<<< HEAD
               <MenuItem>
                 Quản lí Users
                 <Link to="/admin/mange-users" />
               </MenuItem>
+=======
+              <MenuItem> Quản lí Users </MenuItem>
+>>>>>>> 8ff02ef037b6a8d5f3bf270ba4e5ac5d17689ca0
               <MenuItem> Quản lí Bài Quiz</MenuItem>
               <MenuItem>Quản lí Câu Hỏi</MenuItem>
             </SubMenu>
