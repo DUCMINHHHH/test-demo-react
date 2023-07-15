@@ -3,12 +3,19 @@ import "./ManageUser.scss";
 import { FaPlus } from "react-icons/fa";
 import TableUser from "./tableUser";
 import { useEffect, useState } from "react";
-import { getAllUsers } from "../../../services/apiServices";
+import {
+  getAllUsers,
+  getUserWithPaginate,
+} from "../../../services/apiServices";
 import ModalUpdateUser from "./ModalUpdateUser";
 import ModalViewUser from "./ModalViewUser";
 import ModalDeleteUser from "./ModalDeleteUser";
+import TableUserPaginate from "./TableUserPaginate";
 
 const ManageUser = (props) => {
+  const limitUser = 8;
+  const [pageCount, setpageCount] = useState(0);
+
   const [showModalCreateUser, setshowModalCreateUser] = useState(false);
   const [showModalUpdateUser, setshowModalUpdateUser] = useState(false);
   const [dataUpdate, setdataUpdate] = useState({});
@@ -29,6 +36,19 @@ const ManageUser = (props) => {
     console.log(res);
     if (res.EC === 0) {
       setListUser(res.DT);
+    }
+  };
+
+  useEffect(() => {
+    fetchListUserWithPaginate(1);
+  }, []);
+
+  const fetchListUserWithPaginate = async (page) => {
+    let res = await getUserWithPaginate(page, limitUser);
+    console.log(res);
+    if (res.EC === 0) {
+      setListUser(res.DT.users);
+      setpageCount(res.DT.totalPages);
     }
   };
 
@@ -64,11 +84,13 @@ const ManageUser = (props) => {
           </button>
         </div>
         <div className="table-users-container">
-          <TableUser
+          <TableUserPaginate
             listUser={listUser}
             handleClickBtnUpdate={handleClickBtnUpdate}
             handleClickBtnView={handleClickBtnView}
             handleClickBtnDelete={handleClickBtnDelete}
+            fetchListUserWithPaginate={fetchListUserWithPaginate}
+            pageCount={pageCount}
           />
         </div>
         <ModalCreateUser
