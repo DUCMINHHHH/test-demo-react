@@ -1,8 +1,24 @@
 .login-container {
   .header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    padding-right: 100px;
     height: 45px;
-    text-align: right;
-    border: 1px solid red;
+
+    button {
+      padding: 3px 15px;
+      margin-left: 15px;
+      border-radius: 5px;
+      background: #fff;
+      border: 1px solid;
+
+      &:hover {
+        background: #000;
+        color: #fff;
+      }
+    }
   }
 
   .title {
@@ -31,6 +47,14 @@
       margin: 20px 0;
       background: #000;
       color: #fff;
+    }
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    .back {
+      cursor: pointer;
     }
   }
 }
