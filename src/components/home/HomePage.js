@@ -9,7 +9,7 @@ const HomePage = (props) => {
           // width="900"
           muted
           loop
-          autoplay="autoPlay"
+          autoPlay="autoPlay"
         >
           <source
             data-testid="currentWebmVideo"

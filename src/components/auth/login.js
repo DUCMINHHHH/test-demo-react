@@ -25,44 +25,46 @@ const Login = (props) => {
     <div className="login-container">
       <div className="header">
         <span>Dont have an account yet? </span>
-        <button>sign up</button>
+        <button onClick={() => navigate("/signup")}>sign up</button>
       </div>
-      <div className="title col-4 mx-auto">Marco Minh</div>
-      <div className="desc col-4 mx-auto">Hello, who is this?</div>
-      <div className="content-form col-4 mx-auto">
-        <div className="form-group">
-          <label>Email</label>
-          <input
-            type={"email"}
-            className="form-control"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-          />
-        </div>
-        <div className="form-group">
-          <label>Password</label>
-          <input
-            type={"password"}
-            className="form-control"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          />
-        </div>
-        <span className="forget-password">Forgot Your Password ? </span>
-        <div>
-          <button className="btn-submit" onClick={() => handleLogin()}>
-            Login to Marco Minh
-          </button>
-        </div>
-        <div className="text-center">
-          <span
-            className="back"
-            onClick={() => {
-              navigate("/");
-            }}
-          >
-            Go To HomePage
-          </span>
+      <div className="login-content">
+        <div className="title col-4 mx-auto">Marco Minh</div>
+        <div className="desc col-4 mx-auto">Hello, who is this?</div>
+        <div className="content-form col-4 mx-auto">
+          <div className="form-group">
+            <label>Email</label>
+            <input
+              type={"email"}
+              className="form-control"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <label>Password</label>
+            <input
+              type={"password"}
+              className="form-control"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+            />
+          </div>
+          <span className="forget-password">Forgot Your Password ? </span>
+          <div>
+            <button className="btn-submit" onClick={() => handleLogin()}>
+              Login to Marco Minh
+            </button>
+          </div>
+          <div className="text-center">
+            <span
+              className="back"
+              onClick={() => {
+                navigate("/");
+              }}
+            >
+              Go To HomePage
+            </span>
+          </div>
         </div>
       </div>
     </div>
