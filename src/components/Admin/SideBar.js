@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import "react-pro-sidebar/dist/css/styles.css";
 import {
   ProSidebar,
@@ -22,6 +23,8 @@ import { MdDashboard } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 const SideBar = ({ image, collapsed, toggled, handleToggleSidebar }) => {
+  const navigate = useNavigate();
+
   return (
     <>
       <ProSidebar
@@ -46,7 +49,7 @@ const SideBar = ({ image, collapsed, toggled, handleToggleSidebar }) => {
             }}
           >
             <SiAidungeon size={"3em"} color={"goldenrod"} />{" "}
-            <span>MARCO MINH</span>
+            <span onClick={() => navigate("/")}>MARCO MINH</span>
           </div>
         </SidebarHeader>
 
