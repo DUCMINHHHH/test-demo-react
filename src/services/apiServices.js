@@ -35,12 +35,16 @@ const postLogin = (email, password) => {
   return axios.post("api/v1/login", {
     email: email,
     password: password,
-    delay: 5000,
+    delay: 2000,
   });
 };
 
 const postSignup = (email, password, username) => {
   return axios.post("api/v1/register", { email, password, username });
+};
+
+const getQuizByUser = () => {
+  return axios.get("/api/v1/quiz-by-participant");
 };
 
 export {
@@ -51,4 +55,5 @@ export {
   getUserWithPaginate,
   postLogin,
   postSignup,
+  getQuizByUser,
 };
