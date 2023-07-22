@@ -12,7 +12,6 @@ instance.interceptors.request.use(
     const accessToken = store?.getState()?.user?.account?.access_token;
     config.headers["Authorization"] = "Bearer " + accessToken;
     NProgress.start();
-    console.log(store.getState().user);
     // Do something before request is sent
     return config;
   },
