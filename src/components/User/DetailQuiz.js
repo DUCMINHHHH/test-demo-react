@@ -1,11 +1,17 @@
-import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useParams, useLocation } from "react-router-dom";
 import { getDataQuiz } from "../../services/apiServices";
 import _ from "lodash";
+import "./DetailQuiz.scss";
+import Question from "./Question";
 
 const DetailQuiz = (props) => {
   const params = useParams();
   const quizId = params.id;
+  const location = useLocation();
+
+  const [dataQuiz, setDataQuiz] = useState([]);
+  const [index, setIndex] = useState(0);
 
   useEffect(() => {
     fetchQuestions();
@@ -37,10 +43,52 @@ const DetailQuiz = (props) => {
         })
         .value();
       console.log(data);
+      setDataQuiz(data);
     }
   };
 
-  return <div className="detail-quiz-container">Detailquiz</div>;
+  console.log("check data quizz", dataQuiz);
+
+  const handlePrev = () => {
+    if (index - 1 >= 0) {
+      setIndex(index - 1);
+    }
+  };
+
+  const handleNext = () => {
+    if (dataQuiz && dataQuiz.length > index + 1) {
+      setIndex(index + 1);
+    }
+  };
+
+  return (
+    <div className="detail-quiz-container">
+      <div className="left-content">
+        <div className="title">
+          Quiz {quizId} : {location?.state?.quizzTitle}
+        </div>
+        <hr />
+        <div className="question-body">
+          <img />
+        </div>
+        <div className="question-content">
+          <Question
+            index={index}
+            data={dataQuiz && dataQuiz.length > 0 ? dataQuiz[index] : []}
+          />
+          <div className="footer">
+            <button className="btn btn-secondary" onClick={() => handlePrev()}>
+              prev
+            </button>
+            <button className="btn btn-secondary" onClick={() => handleNext()}>
+              next
+            </button>
+          </div>
+        </div>
+      </div>
+      <div className="right-content">count down</div>
+    </div>
+  );
 };
 
 export default DetailQuiz;
