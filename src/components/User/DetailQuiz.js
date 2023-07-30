@@ -82,21 +82,29 @@ const DetailQuiz = (props) => {
   };
 
   const handleFinishQuizz = () => {
-    {
-      "quizId": 1,
-      "answers": [
-          { 
-              "questionId": 1,
-              "userAnswerId": [3]
-          },
-          { 
-              "questionId": 2,
-              "userAnswerId": [6]
-          }
-      ]
-  }
-    console.log("data", dataQuiz);
+    let payload = {
+      quizId: +quizId,
+      answers: [],
+    };
+    let answers = [];
     if (dataQuiz && dataQuiz.length > 0) {
+      dataQuiz.forEach((item) => {
+        let questionId = item.questionId;
+        let userAnswerId = [];
+        item.answers.forEach((item) => {
+          if (item.isSelected === true) {
+            userAnswerId.push(item.id);
+          }
+        });
+
+        answers.push({
+          questionId: +questionId,
+          userAnswerId: userAnswerId,
+        });
+      });
+
+      payload.answers = answers;
+      console.log("final-payload", payload);
     }
   };
 
