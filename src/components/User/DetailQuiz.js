@@ -30,12 +30,12 @@ const DetailQuiz = (props) => {
           let answers = [];
           let questionDescription,
             image = null;
-
           value.forEach((item, index) => {
             if (index === 0) {
-              questionDescription = item.questionDescription;
+              questionDescription = item.description;
               image = item.image;
             }
+            item.answers.isSelected = false;
             answers.push(item.answers);
           });
           // console.log("value", value, "key", key);
@@ -47,8 +47,6 @@ const DetailQuiz = (props) => {
     }
   };
 
-  console.log("check data quizz", dataQuiz);
-
   const handlePrev = () => {
     if (index - 1 >= 0) {
       setIndex(index - 1);
@@ -58,6 +56,47 @@ const DetailQuiz = (props) => {
   const handleNext = () => {
     if (dataQuiz && dataQuiz.length > index + 1) {
       setIndex(index + 1);
+    }
+  };
+
+  const handleCheckbox = (answerId, questionId) => {
+    let dataQuizClone = _.cloneDeep(dataQuiz);
+    let question = dataQuizClone.find(
+      (item) => +item.questionId === +questionId
+    );
+    if (question && question.answers) {
+      question.answers = question.answers.map((item) => {
+        if (+item.id === +answerId) {
+          item.isSelected = !item.isSelected;
+        }
+        return item;
+      });
+    }
+    let index = dataQuizClone.findIndex(
+      (item) => +item.questionId === +questionId
+    );
+    if (index > -1) {
+      dataQuizClone[index] = question;
+      setDataQuiz(dataQuizClone);
+    }
+  };
+
+  const handleFinishQuizz = () => {
+    {
+      "quizId": 1,
+      "answers": [
+          { 
+              "questionId": 1,
+              "userAnswerId": [3]
+          },
+          { 
+              "questionId": 2,
+              "userAnswerId": [6]
+          }
+      ]
+  }
+    console.log("data", dataQuiz);
+    if (dataQuiz && dataQuiz.length > 0) {
     }
   };
 
@@ -74,6 +113,7 @@ const DetailQuiz = (props) => {
         <div className="question-content">
           <Question
             index={index}
+            handleCheckbox={handleCheckbox}
             data={dataQuiz && dataQuiz.length > 0 ? dataQuiz[index] : []}
           />
           <div className="footer">
@@ -82,6 +122,12 @@ const DetailQuiz = (props) => {
             </button>
             <button className="btn btn-secondary" onClick={() => handleNext()}>
               next
+            </button>
+            <button
+              className="btn btn-warning"
+              onClick={() => handleFinishQuizz()}
+            >
+              Finish
             </button>
           </div>
         </div>
