@@ -92,6 +92,12 @@ const ManageQuiz = (props) => {
                     onChange={(event) => handleOnchange(event)}
                   ></input>
                 </div>
+                <button
+                  className="btn btn-warning mt-4"
+                  onClick={() => handleSubmitQuiz()}
+                >
+                  Save
+                </button>
               </fieldset>
             </div>
           </Accordion.Body>
