@@ -18,10 +18,10 @@ const ManageUser = (props) => {
   const [currentPage, setCurrentPage] = useState(1);
 
   const [showModalCreateUser, setshowModalCreateUser] = useState(false);
+  const [showModalViewUser, setshowModalViewUser] = useState(false);
+
   const [showModalUpdateUser, setshowModalUpdateUser] = useState(false);
   const [dataUpdate, setdataUpdate] = useState({});
-
-  const [showModalViewUser, setshowModalViewUser] = useState(false);
 
   const [showModalDeleteUser, setshowModalDeleteUser] = useState(false);
   const [dataDelete, setdataDelete] = useState({});

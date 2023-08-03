@@ -48,7 +48,7 @@ const ModalUpdateUser = (props) => {
       setPreviewImage(URL.createObjectURL(event.target.files[0]));
       setImage(event.target.files[0]);
     } else {
-      // setPreviewImage("")
+      setPreviewImage("");
     }
   };
 
